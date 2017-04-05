@@ -5,7 +5,6 @@ from socket import *
 ip = raw_input("Enter IP address or \'localhost\': ")
 if ip == 'localhost':
     ip = '127.0.0.1'
-message = raw_input("Enter message: ")
 
 serverAddr = (ip, 12000)
 pings = 1
@@ -21,6 +20,7 @@ while pings <= 10:
 
     # Send ping
     start = time.time()
+    message = 'Ping '+ str(pings) + ' ' + str(start)
     clientSocket.sendto(message, serverAddr)
 
     #If data is received back from server, print
@@ -29,7 +29,6 @@ while pings <= 10:
         end = time.time()
         rtt = end - start
         print("Respond: " + message)
-        print("Pings: " + str(pings))
         print("RTT: " + str(rtt*1000) + "ms\n")
 
     #If data is not received back from server, print it has timed out
